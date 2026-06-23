@@ -1,0 +1,9 @@
+version: 2
+sources:
+  - name: marketing_raw          # JARVIS UPDATE: Naya nickname 
+    database: awsdatacatalog     # The AWS Librarian (remains same)
+    schema: raw_marketing_data   # Your actual Athena database for this project
+    tables:
+      - name: members            # The first table you created
+      - name: transactions       # The second table
+      - name: user_logs          # The third table
