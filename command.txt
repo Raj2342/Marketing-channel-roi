@@ -1,0 +1,19 @@
+ exist from dbt-env :  deactivate
+
+ folder : 
+cd ecommerce_abandonment
+
+active virtual enviroment : 
+1. ls ..
+2. ..\dbt-env\Scripts\Activate.ps1
+
+run code in terminal : 
+dbt run --select aggregate_raw_data
+
+aggregate_raw_data.sql
+raw_cleaning_members.sql
+channel_data_preprocessing
+
+
+
+QueryUsagePerDay
