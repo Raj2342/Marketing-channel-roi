@@ -52,6 +52,18 @@ To identify the profitable segments, I engineered a data pipeline that answers f
 <img width="1141" height="621" alt="cart_security drawio" src="https://github.com/user-attachments/assets/ae5299f6-a247-4a4b-863c-e75e72ba09b2" />
 <img width="2459" height="1551" alt="cart_architecture drawio" src="https://github.com/user-attachments/assets/317c3339-14b2-4c05-a580-16dd340491bf" />
 
+---
+## 📁 Raw Data Sourcing & Scale
+
+To ensure strict adherence to data privacy standards and completely separate this independent case study from any professional work experience, the raw membership and transactional data powering this architecture is sourced from a public dataset: [WSDM - KKBox's Churn Prediction Challenge](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data).
+
+**Data Volume & Processing Scale:**
+This project processes enterprise-grade data volumes, strictly requiring a robust cloud data warehouse architecture (GCP + BigQuery + dbt) rather than localized processing tools. The raw data ingestion and transformation pipeline handles:
+* **Transactions Log:** `22,978,755` rows of historical subscription payments, auto-renewals, and plan changes.
+* **Members Log:** `6,769,473` rows of unique user demographics and registration metadata.
+
+
+
 ## 📁 Data Sourcing & Simulation
 
 To ensure strict adherence to data privacy standards and completely separate this independent case study from any professional work experience, the raw membership and transactional data powering this architecture is a synthetically scaled version of a public dataset: [WSDM - KKBox's Churn Prediction Challenge](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data).
