@@ -52,4 +52,8 @@ To identify the profitable segments, I engineered a data pipeline that answers f
 <img width="1141" height="621" alt="cart_security drawio" src="https://github.com/user-attachments/assets/ae5299f6-a247-4a4b-863c-e75e72ba09b2" />
 <img width="2459" height="1551" alt="cart_architecture drawio" src="https://github.com/user-attachments/assets/317c3339-14b2-4c05-a580-16dd340491bf" />
 
+## 📁 Data Sourcing & Simulation
 
+To ensure strict adherence to data privacy standards and completely separate this independent case study from any professional work experience, the raw membership and transactional data powering this architecture is a synthetically scaled version of a public dataset: [WSDM - KKBox's Churn Prediction Challenge](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data).
+
+The raw data was structurally modified, aggregated across multiple subscription touchpoints (auto-renewals, active cancellations, plan changes, and user demographics), and scaled to simulate a massive B2C enterprise multi-cloud environment. This allowed me to rigorously stress-test the GCP + BigQuery + dbt ELT pipeline and demonstrate production-grade analytical capabilities without utilizing proprietary company data.
