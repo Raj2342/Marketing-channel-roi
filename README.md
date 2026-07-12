@@ -63,13 +63,97 @@ This project processes enterprise-grade data volumes, strictly requiring a robus
 ## dbt Data Lineage & Transformation DAG 
 <img width="781" height="571" alt="dbt-lineage drawio" src="https://github.com/user-attachments/assets/75ed5f24-1f0c-489f-a62f-d5b49b9874d1" />
 
+---
+### 📂 Repository Structure & SQL Models
 
+To maintain enterprise-grade code hygiene and modularity, the entire data transformation layer is built using dbt Core. Below is the directory structure detailing the staging, cleaning, and aggregation models processing the 29 million+ rows.
+
+*Note: Navigate directly into the `models/aggregate/` directory to review the complex Window Functions and Business Logic calculations powering the LTV engine.*
+
+```text
+channel_data_preprocessing/
+├── models/
+│   ├── stageing/                           # Raw data standardization & type casting
+│   │   ├── stg_members.sql
+│   │   ├── stg_transactions.sql
+│   │   └── stg_user_logs.sql
+│   ├── cleaning/                           # Demographic data imputation & NULL handling
+│   │   └── raw_cleaning_members.sql
+│   ├── aggregate/                          # Core LTV metrics & intent classifications
+│   │   └── aggregate_raw_data.sql
+│   └── sources.yml                         # Source definitions mapped to BigQuery raw tables
+├── logs/
+│   └── dbt.log                             # Execution logs for debugging
+├── target/                                 # Compiled SQL (generated post dbt run)
+├── dbt_project.yml                         # Main dbt project configuration and materialization rules
+├── .gitignore                              
+├── command.txt                             # Stored execution commands
+└── README.md                               # Project documentation (You are here)
 ## 📁 Data Sourcing & Simulation
 
 To ensure strict adherence to data privacy standards and completely separate this independent case study from any professional work experience, the raw membership and transactional data powering this architecture is a synthetically scaled version of a public dataset: [WSDM - KKBox's Churn Prediction Challenge](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data).
 
 <img width="1903" height="757" alt="image" src="https://github.com/user-attachments/assets/9bd602a7-8ad0-4118-9284-4af45152a633" />
+```
+---
+### 🧠 Core Engineering Logic: LTV & Cohort Classification (Demo Snippet)
 
+*📌 Note: The snippet below is a demonstration highlighting the core logic. The complete dbt models within this repository heavily utilize advanced SQL techniques including complex `CTEs`, deductive `WINDOW` functions, cross-table `LEFT JOINS`, and dynamic `CASE` statements to execute SaaS business logic directly within BigQuery.*
+
+The true value of this diagnostic model lies in correctly identifying the current state of a user and classifying their Lifetime Value (LTV). Below is the logic snippet that uses a "Time Machine" approach to isolate a user's latest subscription status, calculates their tenure, and dynamically flags them as a "High-Value User" or a "Promo Hunter".
+
+```sql
+-- Snippet from: models/aggregate/aggregate_raw_data.sql
+
+-- STEP 1: The "Time Machine" (Deduplicating to find the exact current state of the user)
+WITH transaction_ranked AS (
+    SELECT 
+        msno,
+        payment_method_id,
+        is_auto_renew,
+        is_cancel,
+        transaction_date,
+        membership_expire_date,
+        -- Tie-breaker: If dates match, prioritize the furthest expiry date to prevent false churn flags
+        ROW_NUMBER() OVER(
+            PARTITION BY msno 
+            ORDER BY transaction_date DESC, membership_expire_date DESC
+        ) as rn
+    FROM {{ ref('stg_transactions') }}
+),
+
+-- STEP 2: The Business Logic Engine (Extracting the final VIP Classifications)
+SELECT 
+    f.*,
+    
+    -- The Survival Flag: Determines if the user has technically churned based on business rules
+    CASE 
+        WHEN f.latest_membership_expire_date < DATE '2017-03-31' THEN 1 -- User Churned
+        ELSE 0 -- User Active (Censored)
+    END AS is_Churned, 
+
+    -- The Promo Hunter Flag: Identifies users strictly reliant on heavily discounted acquisitions
+    CASE 
+        WHEN f.total_discount_burn > 0 THEN 1 
+        ELSE 0 
+    END AS is_discounted,
+
+    -- The Ultimate KPI: Defining the profitable "Power User" 
+    CASE 
+        WHEN f.sum_actual_amount_paid >= 80.29 
+         AND f.sum_actual_amount_paid >= f.sum_plan_list_price 
+         AND f.Tenure_Days >= 365 
+        THEN 1 
+        ELSE 0 
+    END AS is_High_Value_User
+
+FROM final_merged f
+WHERE f.Tenure_Days >= 0; -- System noise filtration
+
+```
+---
+
+## 📈 Final Deliverable: Business Intelligence & Actionable Insights
 
 
 The raw data was structurally modified, aggregated across multiple subscription touchpoints (auto-renewals, active cancellations, plan changes, and user demographics), and scaled to simulate a massive B2C enterprise multi-cloud environment. This allowed me to rigorously stress-test the GCP + BigQuery + dbt ELT pipeline and demonstrate production-grade analytical capabilities without utilizing proprietary company data.
