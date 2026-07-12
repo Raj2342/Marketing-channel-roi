@@ -154,6 +154,9 @@ WHERE f.Tenure_Days >= 0; -- System noise filtration
 ---
 ---
 ## 📈 Final Deliverable: Business Intelligence & Actionable Insights
+
+https://app.powerbi.com/view?r=eyJrIjoiZDY3ODEzYTctOGY3MS00MDQ0LWEwZWMtZDcxYTM2MjJmY2Y0IiwidCI6IjM0YmQ4YmVkLTJhYzEtNDFhZS05ZjA4LTRlMGEzZjExNzA2YyJ9
+
 <img width="1819" height="961" alt="Screenshot (38)" src="https://github.com/user-attachments/assets/8de53ee1-3dc8-448e-b373-4feedd974dd9" />
 <img width="1824" height="972" alt="Screenshot (39)" src="https://github.com/user-attachments/assets/e56895d5-0e04-4bae-99ae-4326969f6200" />
 <img width="1835" height="970" alt="Screenshot (40)" src="https://github.com/user-attachments/assets/ed84796a-e4ae-47c5-b4f2-1ae99b5c650c" />
