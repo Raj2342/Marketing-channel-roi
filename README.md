@@ -152,8 +152,18 @@ WHERE f.Tenure_Days >= 0; -- System noise filtration
 
 ```
 ---
-
+---
 ## 📈 Final Deliverable: Business Intelligence & Actionable Insights
+<img width="1819" height="961" alt="Screenshot (38)" src="https://github.com/user-attachments/assets/8de53ee1-3dc8-448e-b373-4feedd974dd9" />
+<img width="1824" height="972" alt="Screenshot (39)" src="https://github.com/user-attachments/assets/e56895d5-0e04-4bae-99ae-4326969f6200" />
+<img width="1835" height="970" alt="Screenshot (40)" src="https://github.com/user-attachments/assets/ed84796a-e4ae-47c5-b4f2-1ae99b5c650c" />
+<img width="1826" height="970" alt="Screenshot (41)" src="https://github.com/user-attachments/assets/145a91d3-8968-48d4-98b0-e0af7830668b" />
+<img width="1833" height="993" alt="Screenshot (45)" src="https://github.com/user-attachments/assets/735795a5-aa48-430b-b2f2-edd3b61e1c9c" />
+<img width="1583" height="979" alt="Screenshot (47)" src="https://github.com/user-attachments/assets/070cbe82-a3a9-443c-a313-d2c250b7c75d" />
 
+----
+## 📁 Data Sourcing & Simulation
+
+To ensure strict adherence to data privacy standards and completely separate this independent case study from any professional work experience, the raw membership and transactional data powering this architecture is a synthetically scaled version of a public dataset: [WSDM - KKBox's Churn Prediction Challenge](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data).
 
 The raw data was structurally modified, aggregated across multiple subscription touchpoints (auto-renewals, active cancellations, plan changes, and user demographics), and scaled to simulate a massive B2C enterprise multi-cloud environment. This allowed me to rigorously stress-test the GCP + BigQuery + dbt ELT pipeline and demonstrate production-grade analytical capabilities without utilizing proprietary company data.
