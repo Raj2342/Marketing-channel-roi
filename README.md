@@ -53,11 +53,7 @@ To identify the profitable segments, I engineered a data pipeline that answers f
 <img width="2459" height="1551" alt="cart_architecture drawio" src="https://github.com/user-attachments/assets/317c3339-14b2-4c05-a580-16dd340491bf" />
 
 ---
-## 📁 Raw Data Sourcing & Scale
-
-To ensure strict adherence to data privacy standards and completely separate this independent case study from any professional work experience, the raw membership and transactional data powering this architecture is sourced from a public dataset: [WSDM - KKBox's Churn Prediction Challenge](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data).
-
-**Data Volume & Processing Scale:**
+## 📁 Raw Data volume
 This project processes enterprise-grade data volumes, strictly requiring a robust cloud data warehouse architecture (GCP + BigQuery + dbt) rather than localized processing tools. The raw data ingestion and transformation pipeline handles:
 * **Transactions Log:** `22,978,755` rows of historical subscription payments, auto-renewals, and plan changes.
 * **Members Log:** `6,769,473` rows of unique user demographics and registration metadata.
@@ -67,5 +63,9 @@ This project processes enterprise-grade data volumes, strictly requiring a robus
 ## 📁 Data Sourcing & Simulation
 
 To ensure strict adherence to data privacy standards and completely separate this independent case study from any professional work experience, the raw membership and transactional data powering this architecture is a synthetically scaled version of a public dataset: [WSDM - KKBox's Churn Prediction Challenge](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data).
+
+<img width="1903" height="757" alt="image" src="https://github.com/user-attachments/assets/9bd602a7-8ad0-4118-9284-4af45152a633" />
+
+
 
 The raw data was structurally modified, aggregated across multiple subscription touchpoints (auto-renewals, active cancellations, plan changes, and user demographics), and scaled to simulate a massive B2C enterprise multi-cloud environment. This allowed me to rigorously stress-test the GCP + BigQuery + dbt ELT pipeline and demonstrate production-grade analytical capabilities without utilizing proprietary company data.
