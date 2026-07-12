@@ -31,32 +31,16 @@ $$ LTV = \frac{ARPU}{\text{Churn Rate}} \times \text{Gross Margin} $$
 
 To identify the profitable segments, I engineered a data pipeline that answers five distinct business questions, applying advanced logic to raw transactional data:
 
-1. **The Revenue Contribution (Who is actually paying the bills?):** 
-   * Calculated the Average Net Revenue Per User (ANRPU) mapped to their specific registration channel[cite: 1]. 
-   * To identify heavy discount leakage, the model subtracts the `plan_list_price` from the `actual_amount_paid` rather than just summing the total revenue[cite: 1].
-2. **The "Survival" Analysis (Active Life of a User):** 
-   * Calculated the Mean Tenure in days per channel by extracting the `registration_init_time` from the members table and the maximum `membership_expire_date` from the transactions table[cite: 1]. 
-   * *Data Governance Note:* Churn is strictly defined as having no new valid service subscription within 30 days after the current membership expires[cite: 1]. The `is_cancel` flag indicates an active user cancellation (often just a plan change), which does not inherently mean the user has churned[cite: 1].
-3. **The "Discount Trap" Analysis (Serial Churners):** 
-   * Engineered an `is_discounted` flag to isolate transactions where `actual_amount_paid` is less than the `plan_list_price`[cite: 1]. 
-   * Calculated the 30-Day Churn Rate comparing discounted users vs. full-price users within each channel to prove which channels are artificially inflated by promo-abusers[cite: 1].
-4. **The Payment Friction Analysis:** 
-   * Mapped the `registered_via` source to the `payment_method_id` to identify the "Golden Path"[cite: 1]. 
-   * This determines if specific combinations (e.g., mobile registration leading to high-churn In-App Purchases vs. Credit Card Auto-Renew) result in the highest ultimate LTV[cite: 1].
-5. **The CAC Payback Proxy:** 
-   * Built a "What-If" parameter model allowing stakeholders to input an Estimated CAC for different channels[cite: 1]. 
-   * The logic dynamically calculates the "Months to Payback" to show exactly when a user from a specific channel breaks even and becomes profitable[cite: 1].
-
+1. **Which registration channels are actually paying our bills?** 
+  
+2. **What is the expected 'Active Life' of a user from each channel?** 
+  
+3. **Are we acquiring 'Serial Churners' through promos?** 
+   
+4. **Does the acquisition channel dictate the payment method (and thus the churn)?** 
+   
+5. **How many months does it take to 'break even' on a user from this channel?** 
+   
 ---
 
-## 📊 Final Deliverable: 3-Page Power BI Blueprint
 
-The final analytical models were connected to Power BI to deliver a structured, 3-page dashboard catering to different layers of the business conversation: Executive (The Money), Diagnostic (The Behavior), and Strategic (The ROI)[cite: 1]. 
-
-* **Page 1: Channel Profitability** 
-  * Features a Heatmap analyzing Channel vs. Revenue, driven by the core Lifetime Value (LTV) metric[cite: 1].
-* **Page 2: Retention Health & Survival** 
-  * Features Cohort Analysis tracking Monthly Retention, highlighting the overall retention percentage at Month 6[cite: 1]. Includes a Kaplan-Meier survival curve showing the percentage of users still active over time split by channel[cite: 1].
-* **Page 3: Discount Impact & Strategy** 
-  * Features a Dual-Axis Chart comparing Discount % vs. Churn Rate to track Revenue Leakage[cite: 1].
-  * Concludes with a Strategic "Winner" Leaderboard ranking channels strictly by their LTV to Estimated CAC Ratio[cite: 1].
