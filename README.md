@@ -58,6 +58,7 @@ This project processes enterprise-grade data volumes, strictly requiring a robus
 * **Transactions Log:** `22,978,755` rows of historical subscription payments, auto-renewals, and plan changes.
 * **Members Log:** `6,769,473` rows of unique user demographics and registration metadata.
 
+<img width="1903" height="757" alt="image" src="https://github.com/user-attachments/assets/7a277f45-f539-4c7c-9591-e6e8d19468d4" />
 
 
 ## 📁 Data Sourcing & Simulation
