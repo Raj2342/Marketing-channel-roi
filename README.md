@@ -42,5 +42,14 @@ To identify the profitable segments, I engineered a data pipeline that answers f
 5. **How many months does it take to 'break even' on a user from this channel?** 
    
 ---
+## ELT Architecture and Data flow
+
+### Goolge : 
+
+<img width="1529" height="991" alt="cart_google" src="https://github.com/user-attachments/assets/6f68ec92-b2ca-4f49-8a04-977871b9b637" /> 
+
+### Aws : 
+<img width="1141" height="621" alt="cart_security drawio" src="https://github.com/user-attachments/assets/ae5299f6-a247-4a4b-863c-e75e72ba09b2" />
+<img width="2459" height="1551" alt="cart_architecture drawio" src="https://github.com/user-attachments/assets/317c3339-14b2-4c05-a580-16dd340491bf" />
 
 
