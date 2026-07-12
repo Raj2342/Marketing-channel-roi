@@ -60,6 +60,9 @@ This project processes enterprise-grade data volumes, strictly requiring a robus
 
 <img width="1903" height="757" alt="image" src="https://github.com/user-attachments/assets/7a277f45-f539-4c7c-9591-e6e8d19468d4" />
 
+## dbt Data Lineage & Transformation DAG 
+<img width="781" height="571" alt="dbt-lineage drawio" src="https://github.com/user-attachments/assets/75ed5f24-1f0c-489f-a62f-d5b49b9874d1" />
+
 
 ## 📁 Data Sourcing & Simulation
 
