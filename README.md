@@ -13,7 +13,7 @@
 
 ---
 
-## 🎯 The Business Problem: Burning Cash on Low-Value Users
+## 🎯 The Business Problem: Burning Cash on Low-Value Users  
 
 In a B2C Subscription SaaS business model, not all customers are created equal[cite: 1]. For a music streaming platform like KKBox, evaluating marketing success purely by Customer Acquisition Cost (CAC) and raw user count creates a dangerous financial trap[cite: 1]. 
 
