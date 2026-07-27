@@ -162,6 +162,10 @@ https://app.powerbi.com/view?r=eyJrIjoiZDY3ODEzYTctOGY3MS00MDQ0LWEwZWMtZDcxYTM2M
 <img width="1583" height="979" alt="Screenshot (47)" src="https://github.com/user-attachments/assets/070cbe82-a3a9-443c-a313-d2c250b7c75d" />
 
 ----
+## 💸 Business Impact: Translating Data into Revenue
+open open final_report folder
+
+--
 ## 📁 Data Sourcing & Simulation
 
 To ensure strict adherence to data privacy standards and completely separate this independent case study from any professional work experience, the raw membership and transactional data powering this architecture is a synthetically scaled version of a public dataset: [WSDM - KKBox's Churn Prediction Challenge](https://www.kaggle.com/competitions/kkbox-churn-prediction-challenge/data).
